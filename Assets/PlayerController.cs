@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float power = 1;
-    public Rigidbody rigidbody;
+    public new Rigidbody rigidbody;
+    public GameObject GAMEOVER;
+    public GameObject RETRY;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             rigidbody.AddForce(new Vector3(-1, 0, 0) * power);
+        }
+
+        if (transform.position.y < -6)
+        {
+            GAMEOVER.SetActive(true);
+            RETRY.SetActive(true);
         }
     }
 }
